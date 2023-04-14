@@ -16,7 +16,6 @@ const demuteButton = document.querySelector('#demute')
 const volumeButton = document.querySelector('#volumeButton')
 const volume = document.querySelector('#volume')
 const volumeValue = document.querySelector('#volumeValue')
-const volumeZone = document.querySelector('#volumeZone')
 
 
 let lastVolume = 0

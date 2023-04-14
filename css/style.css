@@ -347,16 +347,7 @@ main{
         align-items: center;
     }
 
-    #volumeZone {
-        opacity: 0;
-        transition: .3s;
-    }
-
-    #volumeZone.visible{
-        opacity: 1;
-    }
-
-    #volumeValue {
+    .song__controls__buttons__volume {
         display: none;
     }
 
