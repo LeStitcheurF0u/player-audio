@@ -16,6 +16,8 @@ const demuteButton = document.querySelector('#demute')
 const volumeButton = document.querySelector('#volumeButton')
 const volume = document.querySelector('#volume')
 const volumeValue = document.querySelector('#volumeValue')
+const volumeZone = document.querySelector('#volumeZone')
+
 
 let lastVolume = 0
 
@@ -113,21 +115,20 @@ stopButton.addEventListener('click', () => {
 
 // Bouton mute
 muteButton.addEventListener('click', () => {
-        audio.volume = 0
-        lastVolume = volume.value
-        volume.value = 0
-        volumeValue.textContent = Math.floor(volume.value * 100) + "%"
-        muteButton.style.display = "none"
-        demuteButton.style.display = "flex"
-        
-})
-
-demuteButton.addEventListener('click', () => {
     audio.volume = lastVolume
     volume.value = lastVolume
     volumeValue.textContent = Math.floor(volume.value * 100) + "%"
-    muteButton.style.display = "flex"
+    demuteButton.style.display = "flex"
+    muteButton.style.display = "none"    
+})
+
+demuteButton.addEventListener('click', () => {
+    audio.volume = 0
+    lastVolume = volume.value
+    volume.value = 0
+    volumeValue.textContent = Math.floor(volume.value * 100) + "%"
     demuteButton.style.display = "none"
+    muteButton.style.display = "flex"
 })
     
 // Bouton volume
@@ -163,6 +164,9 @@ volume.addEventListener('input', () => {
     volumeValue.textContent = Math.floor(volume.value * 100) + "%"
 })
 
+volumeButton.addEventListener('click', () => {
+    volumeZone.classList.toggle('visible')
+})
 
 function buildDuration(duration) {
     let minutes = Math.floor(duration / 60)
@@ -240,15 +244,15 @@ document.addEventListener('keydown', (e) => {
                 audio.volume = lastVolume
                 volume.value = lastVolume
                 volumeValue.textContent = Math.floor(volume.value * 100) + "%"
-                muteButton.style.display = "flex"
-                demuteButton.style.display = "none"
+                demuteButton.style.display = "flex"
+                muteButton.style.display = "none"
             }else{
                 audio.volume = 0
                 lastVolume = volume.value
                 volume.value = 0
                 volumeValue.textContent = Math.floor(volume.value * 100) + "%"
-                muteButton.style.display = "none"
-                demuteButton.style.display = "flex"
+                demuteButton.style.display = "none"
+                muteButton.style.display = "flex"
             }
             break;
         case "ArrowRight":

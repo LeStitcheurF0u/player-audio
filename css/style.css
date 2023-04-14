@@ -62,7 +62,7 @@ main{
 
 .player {  
     width: 100%;
-    height: 500;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -237,7 +237,8 @@ main{
 .song__controls__buttons__pause,
 .song__controls__buttons__stop,
 .song__controls__buttons__mute,
-.song__controls__buttons__demute
+.song__controls__buttons__demute,
+.song__controls__buttons__volumeButton
  {
     width: 50px;
     height: 50px;
@@ -316,7 +317,8 @@ main{
 .song__controls__buttons__pause:hover,
 .song__controls__buttons__stop:hover,
 .song__controls__buttons__mute:hover,
-.song__controls__buttons__demute:hover{
+.song__controls__buttons__demute:hover,
+.song__controls__buttons__volumeButton:hover{
     background: rgba(238, 118, 51, 0.6);
 }
 
@@ -325,10 +327,38 @@ main{
 
 .song__controls__buttons__pause,
 .song__controls__buttons__stop,
-.song__controls__buttons__demute{
+.song__controls__buttons__mute{
     display: none;
 }
 
+.song__controls__buttons__volume {
+    position: relative;
+}
 
 
+@media screen and (max-width: 900px) {
+    
+    main {
+        width: 80%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    #volumeZone {
+        opacity: 0;
+        transition: .3s;
+    }
+
+    #volumeZone.visible{
+        opacity: 1;
+    }
+
+    #volumeValue {
+        display: none;
+    }
+
+}
 
