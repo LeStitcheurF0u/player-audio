@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Player</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+     <script src="https://kit.fontawesome.com/c1938f591a.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <main>
+        <!-- <section class="top">
+            <div class='header__logo'>
+                <img src="assets/img/logo.png" alt="">
+            </div>
+            <div class='header__title'>
+                <h1>MWS</h1>
+            </div>
+        </section> -->
+        <section class='player'>
+            <section class='song__infos'>
+                <div class='song__infos__img'>
+                    <audio src="" data-trackid=""></audio>
+                    <img src="" alt="">
+                </div>
+                <div class='song__infos__text'>
+                    <h2 id='title'>song name</h2>
+                    <p id='artist'>artist name</p>
+                </div>
+            </section>
+            <section class='song__controls'>
+                <div class='song__controls__progress'>
+                    <div class="song__controls__progress__time">
+                        <div class="song__controls__progress__time__current" id='elapsed'>0:00</div>
+                        <div class="song__controls__progress__time__total" id='track-time'>3:00</div>
+                    </div>
+                    <input type="range" min="0" value="0" class="song__controls__progress__range" id='track'>
+                </div>
+                <div class='song__controls__buttons'>
+                    <button class='song__controls__buttons__reload' id='reload'>
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                    <button class='song__controls__buttons__stop' id='stop'>
+                        <i class="fa-solid fa-stop"></i>
+                    </button>
+                    <button class='song__controls__buttons__play' id='play'>
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class='song__controls__buttons__pause' id='pause'>
+                        <i class="fa-solid fa-pause"></i>
+                    </button>
+                    <button class='song__controls__buttons__next' id='next'>
+                        <i class="fas fa-forward"></i>
+                    </button>
+                    <button class='song__controls__buttons__volume' id='volumeButton'>
+                        
+                        <input type="range" name="volume" id="volume" min='0' max='1' value='1' step='0.01'>
+                        <span id='volumeValue'>100%</span>
+                    </button>
+                </div>       
+        </section>
+    </main>
+  </body>
+  <script src="js/app.js" defer></script>
+</html>
