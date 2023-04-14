@@ -6,18 +6,10 @@
     <title>Player</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
-     <script src="https://kit.fontawesome.com/c1938f591a.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c1938f591a.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <main>
-        <!-- <section class="top">
-            <div class='header__logo'>
-                <img src="assets/img/logo.png" alt="">
-            </div>
-            <div class='header__title'>
-                <h1>MWS</h1>
-            </div>
-        </section> -->
         <section class='player'>
             <section class='song__infos'>
                 <div class='song__infos__img'>
@@ -53,8 +45,13 @@
                     <button class='song__controls__buttons__next' id='next'>
                         <i class="fas fa-forward"></i>
                     </button>
+                    <button class='song__controls__buttons__mute' id='mute'>
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                    <button class='song__controls__buttons__demute' id='demute'>
+                        <i class="fa-solid fa-volume-xmark"></i>
+                    </button>
                     <button class='song__controls__buttons__volume' id='volumeButton'>
-                        
                         <input type="range" name="volume" id="volume" min='0' max='1' value='1' step='0.01'>
                         <span id='volumeValue'>100%</span>
                     </button>

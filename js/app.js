@@ -11,10 +11,13 @@ const pauseButton = document.querySelector('#pause')
 const reloadButton = document.querySelector('#reload')
 const stopButton = document.querySelector('#stop')
 const nextButton = document.querySelector('#next')
+const muteButton = document.querySelector('#mute')
+const demuteButton = document.querySelector('#demute')
 const volumeButton = document.querySelector('#volumeButton')
 const volume = document.querySelector('#volume')
 const volumeValue = document.querySelector('#volumeValue')
 
+let lastVolume = 0
 
 const tracks = [
     {
@@ -107,6 +110,26 @@ stopButton.addEventListener('click', () => {
     stopButton.style.display = "none"
     playButton.style.display = "flex"
 })
+
+// Bouton mute
+muteButton.addEventListener('click', () => {
+        audio.volume = 0
+        lastVolume = volume.value
+        volume.value = 0
+        volumeValue.textContent = Math.floor(volume.value * 100) + "%"
+        muteButton.style.display = "none"
+        demuteButton.style.display = "flex"
+        
+})
+
+demuteButton.addEventListener('click', () => {
+    audio.volume = lastVolume
+    volume.value = lastVolume
+    volumeValue.textContent = Math.floor(volume.value * 100) + "%"
+    muteButton.style.display = "flex"
+    demuteButton.style.display = "none"
+})
+    
 // Bouton volume
 
 
@@ -131,6 +154,11 @@ track.addEventListener('input', () => {
 })
 
 volume.addEventListener('input', () => {
+    if(volume.value == 0){
+        muteButton.style.display = "none"
+        demuteButton.style.display = "flex"
+        lastVolume = 0.5
+    }
     audio.volume = volume.value;
     volumeValue.textContent = Math.floor(volume.value * 100) + "%"
 })
@@ -158,36 +186,99 @@ function getSong(){
 }
 
 document.addEventListener('keydown', (e) => {
-    if(e.code == "Space"){
-        e.preventDefault()
-        if(audio.paused){
+    switch(e.code){
+        case "Space":
+            e.preventDefault()
+            if(audio.paused){
+                audio.play()
+                pauseButton.style.display = "flex"
+                stopButton.style.display = "flex"
+                playButton.style.display = "none"
+            }else{
+                audio.pause()
+                playButton.style.display = "flex"
+                stopButton.style.display = "none"
+                pauseButton.style.display = "none"
+            }
+            break;
+        case "KeyN":
+            e.preventDefault()
+            getSong()
             audio.play()
             pauseButton.style.display = "flex"
             stopButton.style.display = "flex"
             playButton.style.display = "none"
-        }else{
+            break;
+        case "KeyS":
+            e.preventDefault()
             audio.pause()
-            playButton.style.display = "flex"
-            stopButton.style.display = "none"
+            audio.currentTime = 0
             pauseButton.style.display = "none"
-        }
-    }
-    if(e.code == "KeyN"){
-        e.preventDefault()
-        getSong()
-        audio.play()
-        pauseButton.style.display = "flex"
-        stopButton.style.display = "flex"
-        playButton.style.display = "none"
-    }
-    if(e.code == "KeyS"){
-        e.preventDefault()
-        audio.pause()
-        audio.currentTime = 0
-        pauseButton.style.display = "none"
-        stopButton.style.display = "none"
-        playButton.style.display = "flex"
+            stopButton.style.display = "none"
+            playButton.style.display = "flex"
+            break;
+        case "KeyP":
+            e.preventDefault()
+            getSong()
+            audio.play()
+            pauseButton.style.display = "flex"
+            stopButton.style.display = "flex"
+            playButton.style.display = "none"
+            break;
+        case "KeyR":
+            e.preventDefault()
+            audio.pause()
+            audio.currentTime = 0
+            audio.play()
+            pauseButton.style.display = "flex"
+            stopButton.style.display = "flex"
+            playButton.style.display = "none"
+            break;
+        case "Semicolon":
+            e.preventDefault()
+            if(audio.volume == 0){
+                audio.volume = lastVolume
+                volume.value = lastVolume
+                volumeValue.textContent = Math.floor(volume.value * 100) + "%"
+                muteButton.style.display = "flex"
+                demuteButton.style.display = "none"
+            }else{
+                audio.volume = 0
+                lastVolume = volume.value
+                volume.value = 0
+                volumeValue.textContent = Math.floor(volume.value * 100) + "%"
+                muteButton.style.display = "none"
+                demuteButton.style.display = "flex"
+            }
+            break;
+        case "ArrowRight":
+            e.preventDefault()
+            audio.currentTime += 5
+            break;
+        case "ArrowLeft":
+            e.preventDefault()
+            audio.currentTime -= 5
+            break;
+        case "ArrowUp":
+            e.preventDefault()
+            if(audio.volume < 1){
+                audio.volume += 0.05
+                volume.value = audio.volume
+                volumeValue.textContent = Math.floor(volume.value * 100) + "%"
+            }
+            break;
+        case "ArrowDown":
+            e.preventDefault()
+            if(audio.volume > 0){
+                audio.volume -= 0.05
+                volume.value = audio.volume
+                volumeValue.textContent = Math.floor(volume.value * 100) + "%"
+            }
+            break;
     }
 })
+
+
+
 
 
